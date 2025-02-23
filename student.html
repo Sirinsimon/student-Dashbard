@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; padding: 20px; }
+        .container { max-width: 600px; margin: auto; }
+        input, button { margin: 5px; padding: 10px; width: 100%; }
+        ul { list-style: none; padding: 0; }
+        li { background: #f4f4f4; padding: 10px; margin: 5px 0; display: flex; justify-content: space-between; }
+        .completed { text-decoration: line-through; color: gray; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Student Dashboard</h2>
+        <input type="text" id="taskInput" placeholder="Enter new task">
+        <button onclick="addTask()">Add Task</button>
+        <ul id="taskList"></ul>
+    </div>
+
+    <script>
+        function addTask() {
+            let taskInput = document.getElementById("taskInput");
+            let taskText = taskInput.value.trim();
+            if (taskText === "") return;
+            
+            let li = document.createElement("li");
+            li.innerHTML = `${taskText} <button onclick="removeTask(this)">❌</button>`;
+            document.getElementById("taskList").appendChild(li);
+            
+            taskInput.value = "";
+        }
+
+        function removeTask(button) {
+            button.parentElement.remove();
+        }
+    </script>
+</body>
+</html>
